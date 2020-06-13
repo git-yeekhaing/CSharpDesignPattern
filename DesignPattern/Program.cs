@@ -14,14 +14,19 @@ namespace DesignPattern
             fromTeacher.PrintDetails("From Teacher");
             Singleton fromStudent = Singleton.GetInstance;
             fromStudent.PrintDetails("From Student");
+
+            Singleton.DerivedSingleton derivedObj = new Singleton.DerivedSingleton();
+            derivedObj.PrintDetails("From Derived");
+
             Console.ReadLine();
         }
     }
 }
-/*The way we implement the singleton design pattern 
- * in the above example is not to thread-safe.
- * It means in a multithreaded environment,
- * it will able to create multiple instances of the singleton
- * class. How to make the singleton class thread-safe we will discuss
- * in the Thread-Safe Singleton Design Pattern article.
- * */
+/*
+The above output clearly shows that the counter value
+has incremented to 2 which proves that the private constructor 
+executed twice and hence it creates multiple instances of the 
+singleton class. So, by removing the sealed keyword we can inherit 
+the singleton class and also possible to create multiple objects 
+of the singleton class. This violates singleton design principles.
+ */

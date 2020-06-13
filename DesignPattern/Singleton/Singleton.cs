@@ -37,16 +37,10 @@ namespace DesignPattern
         {
             Console.WriteLine(message);
         }
-    }
 
-    //‘Singleton.Singleton()’ is inaccessible due to its protection level
-    public class DerivedSingleto : Singleton
-    {
-    }
+        // nested class
+        public class DerivedSingleton : Singleton
+        {
+        }
+    }    
 }
-/*
- * The above error is because of the private constructor 
- * that we have in the Singleton class. Now you might be thinking 
- * that as we have a private constructor within the class so
- * it is not possible to derive this class, then why do we need to apply the sealed keyword to the Singleton class.
- * */

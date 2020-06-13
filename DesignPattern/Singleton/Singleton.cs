@@ -11,7 +11,7 @@ namespace DesignPattern
      * First, create the Singleton class without using the sealed keyword. We also create another class with the name DerivedSingleton 
      * and then Inherits it from the singleton class as shown below.     * 
      * */
-    public class Singleton
+    public sealed class Singleton
     {
         private static int counter = 0;
         private static Singleton instance = null;
@@ -44,3 +44,5 @@ namespace DesignPattern
         }
     }    
 }
+//we cannot derive a sealed class.
+

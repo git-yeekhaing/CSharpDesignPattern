@@ -15,13 +15,13 @@ namespace DesignPattern
             Console.WriteLine("Counter Value " + counter.ToString());
         }
 
-        // creates the Singleton instance at the time of application startup.
-        private static readonly Singleton instance = new Singleton();
+        private static readonly Lazy<Singleton> Instancelock = new Lazy<Singleton>(() => new Singleton());
+       
         public static Singleton GetInstance
         {
             get
             {
-                return instance;
+                return Instancelock.Value;
             }
         }        
 
@@ -32,9 +32,7 @@ namespace DesignPattern
     }
 }
 /*
-You can see that only one instance got created as 
-the Counter value is 1. The above Singleton class is thread-safe
-after removing the lock variables. 
-This is because the now the CLR (Common Language Runtime) will internally 
-take care of the variable initialization as well as thread safety in eager loading.
+This is because of the lazy keyword which creates only one singleton instance 
+and also they are by default thread-safe that’s why we do not get 
+any error while invoking the methods parallelly.
 */

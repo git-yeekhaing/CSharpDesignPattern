@@ -15,14 +15,17 @@ namespace DesignPattern
         {
             get
             {
-                lock (Instancelock)
+                if (instance == null)
                 {
-                    if (instance == null)
+                    lock (Instancelock)
                     {
-                        instance = new Singleton();
+                        if (instance == null)
+                        {
+                            instance = new Singleton();
+                        }
                     }
-                    return instance;
                 }
+                return instance;
             }
         }
 
@@ -36,13 +39,10 @@ namespace DesignPattern
         {
             Console.WriteLine(message);
         }
-    }    
+    }
 }
 /*
- * The above code implementation using lock solves 
- * the multithreading issue. But the problem is that 
- * it is slow down your application as only one thread 
- * can access the GetInstance property at any given point of time.
- * We can overcome the above problem by using the Double-checked 
- * locking mechanism.
+ In the Double-checked locking mechanism,
+first, we will check whether the instance is created or not.
+If not then only we will synchronize the method
 */
